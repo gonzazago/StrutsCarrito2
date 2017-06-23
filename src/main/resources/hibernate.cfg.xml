@@ -8,15 +8,20 @@
         <property name="hibernate.connection.password">gonza123</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ropa</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!--<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!--org.hibernate.dialect.MySQL5Dialect-->
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- Enable Hibernate's automatic session context management -->
+        <!--<property name="current_session_context_class">thread</property>-->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="use_sql_comments">false</property>
-        <mapping class="com.tallerweb.model.Usuario"></mapping>
-        <mapping class ="com.tallerweb.model.Producto"></mapping>
-        <mapping class ="com.tallerweb.model.Color"></mapping>
-        <mapping class ="com.tallerweb.model.Categoria"></mapping>
-        <mapping class ="com.tallerweb.model.Talle"></mapping>
+        <mapping class="com.tallerweb.model.Usuario"/>
+        <mapping class ="com.tallerweb.model.Producto"/>
+        <mapping class ="com.tallerweb.model.Color"/>
+        <mapping class ="com.tallerweb.model.Categoria"/>
+        <mapping class ="com.tallerweb.model.Talle"/>
+
     </session-factory>
 </hibernate-configuration>

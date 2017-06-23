@@ -1,143 +1,68 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<%@taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <head>
     <title>Ropa's - Tu tienda online</title>
-	<link rel="shortcut icon" href="images/favicon.png">
-	
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
-	<link href="css/responsive.css" rel="stylesheet">
-	<script src="js/jquery-1.10.2.js"></script>	
-</head>
-
+    	<link rel="shortcut icon" href="images/favicon.png">
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
+    	<link href="css/materialize.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/price-range.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+        <script src="js/jquery-1.10.2.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
 <body>
-	<header id="header">
-		<jsp:include page="header.jsp"/>	
-		<jsp:include page="combo.jsp"/>	
-		
-		<div class="header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="/ropa/home">INICIO</a></li>
-								<li class="dropdown keep-open"><a href="#"  class="active">PRODUCTOS<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/ropa/productosMu">Mujeres</a></li>
-										<li><a href="/ropa/productosHo">Hombres</a></li> 
-										<li><a href="/ropa/productosNi">Niños</a></li> 
-                                    </ul>
-                                </li> 								
-								<li><a href="/ropa/registro">REGISTRO</a></li> 
-								<li><a href="/ropa/contacto">CONTACTO</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+<jsp:include page="header.jsp"/>
+            <h2 class="header">Productos Hombres</h2>
+                <s:iterator value = "productosL">
+                    <div class="row">
+                        <div class="col s12 m4">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src = <s:property value = "%{nombreimagen}"/> />
+                                    <span class="card-title">
+                                        <s:property value = "${nombreProducto}"/>
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p><s:property value = "%{descripcion}"/></p>
+                                </div>
+                                <div class="card-action">
+                                    <s:url action="CarritoAction" var="urlTag" >
+                                        <s:param name="idProducto">
+                                           <s:property value = "%{idProducto}"/>
+                                        </s:param>
+                                     </s:url>
+                                    <a href="<s:property value="#urlTag" />" >Agregar a Carrito</a>
+                                </div>
+                            </div>
+                        </div>
+                    </s:iterator>
+                </div>
+            </div>
+        </div>
 
-	<section>
-		<div class="container">
-			<div class="row">				
-				<div class="col-sm-12 padding-right">
-				<h1 class="title text-center">HOMBRES</h1>
-					<div class="col-sm-3">
-					<div class="left-sidebar">
-						<div class="panel-group category-products" id="accordian">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Camisas</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Remeras</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Pantalones</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Zapatos</a></h4>
-								</div>
-							</div>							
-						</div>
-					</div>
-					<div class="row">
-						<h1 class="color">Publicidad</h1>
-							<br/>
-							<img src="images/disponible2.png" alt="" />
 
-					</div>
-				</div>
-				<div class="col-sm-9">
-					<div class="features_items">
-						<c:forEach items="${servicioproducto}" var="producto">
-							<div class="col-sm-4">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<h1>${producto.nombreProducto}</h1>										
-											<img src="images/productos/${producto.nombreimagen}" alt=""/>
-											<h3>$ ${producto.precio}</h3>
-											<a href="/ropa/productoDetalle?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalles</a>
-										</div>
-										<div class="product-overlay" data-interval="false">
-											<div class="overlay-content">
-											<img src="images/productos/${producto.nombreimagen}" alt=""/>																					
-											<h2>$ ${producto.precio}</h2>
-											<a href="/ropa/productoDetalle?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalles</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-						</div>		
-						<ul class="pagination">
-							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">&raquo;</a></li>
-						</ul>					
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	
-<jsp:include page="footer.jsp"/>	
+<jsp:include page="footer.jsp"/>
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
-	<script src="js/price-range.js"></script>
-    <script src="js/main.js"></script>
-	<script src="js/html5shiv.js"></script>
-	
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/price-range.js"></script>
+<script src="js/main.js"></script>
+<script src="js/html5shiv.js"></script>
+	<script>
+	    $(document).ready(function(){
+            $('.parallax').parallax();
+            });
+    </script>
 </body>
 </html>

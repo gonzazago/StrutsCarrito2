@@ -1,110 +1,171 @@
 package com.tallerweb.model;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
+
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
 @Entity
-public class Producto implements Comparable<Producto>, Serializable{ 
+@Table(name="producto")
+public class Producto implements Serializable{
 
 /*ATRIBUTOS*/
 
 	private static final long serialVersionUID = 1L;
 
-
 	@Id
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idProducto;
 
+	@Column
 	private String nombreProducto;
 
+	@Column
 	private String descripcion;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn
+	@ManyToOne(fetch = FetchType.EAGER)@Cascade(value = CascadeType.ALL)
+	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn
+	@ManyToOne(fetch = FetchType.EAGER)@Cascade(value = CascadeType.ALL)
+	@JoinColumn(name = "idColor")
 	private Color color;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn
+	@ManyToOne(fetch = FetchType.EAGER)@Cascade(value = CascadeType.ALL)
+	@JoinColumn(name = "idTalle")
 	private Talle talle;
 
+	@Column
+	private String genero;
+
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@Cascade(value = CascadeType.ALL)
+	@JoinTable(name = "usuarios_productos", joinColumns ={@JoinColumn(name="idProducto",referencedColumnName="idProducto")},
+			inverseJoinColumns={@JoinColumn(name="idUsuario",referencedColumnName="idUsuario")})
+	private List<Usuario> usuario;
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    @Column
 	private Float precio;
-
-
-
+	@Column
 	private String nombreimagen;
 
+	@Column
 	private String novedad;
-	
+	@Column
 	private Integer stock;
 	
 	
 public Producto() {}
 
-	/*GETTERS Y SETTERS*/
-	public Long getId() {
-		return id;
+    public Producto(Long idProducto, String nombreProducto, String descripcion, Categoria categoria, Color color, Talle talle, Float precio, String nombreimagen, String novedad, Integer stock, String genero) {
+        this.idProducto = idProducto;
+        this.nombreProducto = nombreProducto;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.color = color;
+        this.talle = talle;
+        this.precio = precio;
+        this.nombreimagen = nombreimagen;
+        this.novedad = novedad;
+        this.stock = stock;
+        this.genero = genero;
+    }
+
+    public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-	public Long setId(Long id) {
-		return this.id = id;
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
+
+	public Long getIdProducto() {
+		return idProducto;
+	}
+
+	public void setIdProducto(Long idProducto) {
+		this.idProducto = idProducto;
+	}
+
 	public String getNombreProducto() {
 		return nombreProducto;
 	}
+
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
-	}
-	public Color getColor() {
-		return color;
-	}
-	public void setColor(Color color) {
-		this.color = color;
-	}
-	public Talle getTalle() {
-		return talle;
-	}
-	public void setTalle(Talle talle) {
-		this.talle = talle;
-	}
-	public Float getPrecio() {
-		return precio;
-	}
-	public void setPrecio(Float precio) {
-		this.precio = precio;
-	}
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-
-	public String getNombreimagen() {
-		return nombreimagen;
-	}
-	public void setNombreimagen(String nombreimagen) {
-		this.nombreimagen = nombreimagen;
-	}
-	public String getNovedad() {
-		return novedad;
-	}
-	public void setNovedad(String novedad) {
-		this.novedad = novedad;
 	}
 
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Talle getTalle() {
+		return talle;
+	}
+
+	public void setTalle(Talle talle) {
+		this.talle = talle;
+	}
+
+	public Float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Float precio) {
+		this.precio = precio;
+	}
+
+	public String getNombreimagen() {
+		return nombreimagen;
+	}
+
+	public void setNombreimagen(String nombreimagen) {
+		this.nombreimagen = nombreimagen;
+	}
+
+	public String getNovedad() {
+		return novedad;
+	}
+
+	public void setNovedad(String novedad) {
+		this.novedad = novedad;
+	}
+
 	public Integer getStock() {
 		return stock;
 	}
@@ -113,41 +174,11 @@ public Producto() {}
 		this.stock = stock;
 	}
 
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<Usuario> getUsuario() {
+		return usuario;
 	}
 
-	/*EQUALS Y HASHCODE*/
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Producto other = (Producto) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
-	/*COMPARE TO*/
-	@Override
-	public int compareTo(Producto o) {
-		return this.id.compareTo(o.id);
-	}
-
 }

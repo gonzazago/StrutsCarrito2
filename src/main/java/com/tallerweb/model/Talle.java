@@ -7,70 +7,35 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "talle")
 public class Talle implements Serializable{
-
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String talle;
-	
-	@OneToMany (mappedBy="talle", cascade=CascadeType.ALL)
-	private List <Producto> productos = new ArrayList <Producto> ();
-	
-	public Talle(String talle) {
-		this.talle=talle;
-	}	
-	
-	public Talle(){}
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idTalle;
+	@Column
+	private String detalle;
 
-	/*GETTERS Y SETTERS*/
-
-	public String getTalle() {
-		return talle;
-	}
-
-	public void setTalle(String talle) {
-		this.talle = talle;
-	}
-
-	/*EQUALS Y HASHCODE*/
-
-	public static long getSerialversionuid() {
+	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((talle == null) ? 0 : talle.hashCode());
-		return result;
+	public Integer getIdTalle() {
+		return idTalle;
 	}
 
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Talle other = (Talle) obj;
-		if (talle == null) {
-			if (other.talle != null)
-				return false;
-		} else if (!talle.equals(other.talle))
-			return false;
-		return true;
+	public void setIdTalle(Integer idTalle) {
+		this.idTalle = idTalle;
 	}
 
-
-	/*SOBREESCRITURA DE METODO TOSTRING*/
-	@Override
-	public String toString() {
-		talle.toString();
-		return talle;
+	public String getDetalle() {
+		return detalle;
 	}
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
+	}
+
 }

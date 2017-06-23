@@ -1,8 +1,14 @@
 package com.tallerweb.model;
 
 
+import org.hibernate.annotations.*;
+
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="usuario")
@@ -10,8 +16,7 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name="idUsuario")
-private int id;
+private Long idUsuario;
 
 @Column
 private String eMail;
@@ -33,11 +38,14 @@ private String eMail;
 @Column
 	private String tipo = "Usuario";
 
+	@ManyToMany( fetch = FetchType.EAGER, mappedBy="usuario")
+	private List<Producto> productos;
+
 	public Usuario() {
 	}
 
-	public Usuario(int id,String eMail, String nombreYapellido, Integer dni, String domicilio, Integer telefono, String fechaNacimiento, String clave, String clave2) {
-		this.id = id;
+	public Usuario(Long idUsuario,String eMail, String nombreYapellido, Integer dni, String domicilio, Integer telefono, String fechaNacimiento, String clave, String clave2) {
+		this.idUsuario = idUsuario;
 		this.eMail = eMail;
 		this.nombreYapellido = nombreYapellido;
 		this.dni = dni;
@@ -109,6 +117,19 @@ private String eMail;
 		this.clave2 = clave2;
 	}
 
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
 
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
+	public List<Producto> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
 }

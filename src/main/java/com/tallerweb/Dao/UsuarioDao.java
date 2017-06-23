@@ -1,6 +1,10 @@
 package com.tallerweb.Dao;
 
+import com.tallerweb.model.Producto;
+import com.tallerweb.model.User;
 import com.tallerweb.model.Usuario;
+
+import java.util.List;
 
 
 /**
@@ -8,7 +12,10 @@ import com.tallerweb.model.Usuario;
  */
 public interface UsuarioDao {
 
-    //public boolean verificarUsuario();
+    public boolean verificarUsuario(User u);
     public void agregarUsuario(Usuario u);
-
+    Usuario buscarUsuario(User u);
+    Usuario buscarUsuarioNombre(Usuario u);
+    Usuario getUserID(Long idU);
+    List<Producto> getProductos();
 }

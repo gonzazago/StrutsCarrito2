@@ -27,8 +27,8 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 public class RegistroActionPost extends ActionSupport{
 
     private static final long serialVersionUID = 1L;
-    private int id;
-    private String eMail;
+    private Long id;
+    private String Mail;
     private String nombreYapellido;
     private Integer dni;
     private String domicilio;
@@ -40,27 +40,27 @@ public class RegistroActionPost extends ActionSupport{
     private UsuarioServicios uMng = new UsuarioServiciosImple();
     @Override
     public String execute() throws Exception{
-        Usuario usuario= new Usuario(id,eMail,nombreYapellido,dni,domicilio,telefono,fechaNacimiento,clave,clave2);
+        Usuario usuario= new Usuario(id,Mail,nombreYapellido,dni,domicilio,telefono,fechaNacimiento,clave,clave2);
         System.out.println("Usuario: " + usuario.getNombreYapellido());
-        System.out.println("Usuario: " + usuario.geteMail());
+        System.out.println("Mail: " + usuario.geteMail());
             uMng.guardarUsuario(usuario);
             return SUCCESS;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String geteMail() {
-        return eMail;
+    public Long getId() {
+        return id;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public String geteMail() {
+        return Mail;
+    }
+
+    public void seteMail(String Mail) {
+        this.Mail = Mail;
     }
 
     public String getNombreYapellido() {

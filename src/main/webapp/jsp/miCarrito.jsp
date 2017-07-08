@@ -17,13 +17,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<s:if test="#session.loggin == 'true'">
+    <jsp:include page="headerUser.jsp"/>
+</s:if>
+<s:if test="#session.loggin != 'true'">
+    <jsp:include page="header.jsp"/>
+</s:if>
 
     <table class="striped highlight">
         <thead>
           <tr>
               <th>Nombre</th>
               <th>Descripcion</th>
+              <th>Cantidad</th>
               <th>Stock</th>
               <th>Precio</th>
           </tr>
@@ -33,6 +39,7 @@
           <tr>
             <td><s:property value ="%{nombreProducto}"/></td>
             <td><s:property value ="%{descripcion}"/></td>
+            <td><s:property value = "%{cant}"/></td>
             <td><s:property value ="%{stock}"/></td>
             <td><s:property value ="%{precio}"/></td>
           </tr>

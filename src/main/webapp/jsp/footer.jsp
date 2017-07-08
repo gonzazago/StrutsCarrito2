@@ -18,7 +18,7 @@
                     <h5 class="white-text">Integrantes</h5>
                     <ul>
                       <li><a class="grey-text text-lighten-3" href="#!">Gonzalo Sergio Zago</a></li>
-                      <li><a class="grey-text text-lighten-3" href="#!">Gonzalo Ciamcio</a></li>
+                      <li><a class="grey-text text-lighten-3" href="#!">Gonzalo Ciancio</a></li>
                     </ul>
                   </div>
                 </div>

@@ -41,7 +41,7 @@
            <input id="password" type="password" name ="password"class="validate">
            <label for="password">Password</label>
          </div>
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <button class="btn waves-effect waves-light" type="submit" name="action">Iniciar Sesion
              <i class="material-icons right">send</i>
            </button>
        </div>

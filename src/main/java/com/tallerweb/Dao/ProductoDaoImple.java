@@ -30,7 +30,7 @@ public class ProductoDaoImple implements ProductoDao {
         session.save(p);
     }
     @Override
-    public void editProducto(Integer id, Producto pAnt){
+    public void editProducto(Long id, Producto pAnt){
 
         Criteria p1 = session.createCriteria(Producto.class);
 
@@ -40,6 +40,10 @@ public class ProductoDaoImple implements ProductoDao {
         pEdit = pAnt;
 
         session.update(pEdit);
+    }
+    @Override
+    public void deleteProducto(Producto p){
+        session.delete(p);
     }
 
     @Override
@@ -69,6 +73,12 @@ public class ProductoDaoImple implements ProductoDao {
     public  List<Producto>getProductos() {
         Criteria c1 = getSession().createCriteria(Producto.class);
         c1.add(Restrictions.eq("novedad", "S"));
+        c1.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+        return c1.list();
+    }
+    @Override
+    public  List<Producto>getAllProductos() {
+        Criteria c1 = getSession().createCriteria(Producto.class);
         c1.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
         return c1.list();
     }

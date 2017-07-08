@@ -22,10 +22,20 @@ public class ProductosServiciosImple implements  ProductoServicios {
         pMng.addProducto(p);
     }
     @Override
-    public void modificarProducto(Integer id, Producto pAnt){
+    public void modificarProducto(Long id, Producto pAnt){
 
         pMng.editProducto(id,pAnt);
 
+    }
+
+    @Override
+    public void borrarProducto(Producto p){
+        pMng.deleteProducto(p);
+    }
+
+    @Override
+    public List<Producto> listarTodosProductos(){
+        return pMng.getAllProductos();
     }
 
     @Override

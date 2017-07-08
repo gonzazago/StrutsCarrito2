@@ -10,7 +10,8 @@ import java.util.List;
 public interface ProductoServicios {
 
     void guardarProducto(Producto p);
-    void modificarProducto(Integer id, Producto pAnt);
+    void modificarProducto(Long id, Producto pAnt);
+    void borrarProducto(Producto p);
     List<Talle> recuperarTalles();
     List<Categoria>recuperarCategorias();
     List<Color>recuperarColores();
@@ -23,4 +24,5 @@ public interface ProductoServicios {
     List<Producto>listarProductosH();
     void agregarProducto(Producto P, Long idU);
 
+    List<Producto> listarTodosProductos();
 }

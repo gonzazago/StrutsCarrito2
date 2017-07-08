@@ -25,7 +25,12 @@
 
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<s:if test="#session.loggin == 'true'">
+    <jsp:include page="headerUser.jsp"/>
+</s:if>
+<s:if test="#session.loggin != 'true'">
+    <jsp:include page="header.jsp"/>
+</s:if>
 	 <div id="contact-page" class="container">
     	<div class="bg">
 	    	<div class="row">    		

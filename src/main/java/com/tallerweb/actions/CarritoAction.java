@@ -30,6 +30,7 @@ public class CarritoAction extends ActionSupport{
     private ProductoServicios pServ = new ProductosServiciosImple();
     private UsuarioServicios uServ = new UsuarioServiciosImple();
     private Long id;
+    private Integer cant;
     private Producto producto;
     private List<Producto> productoList ;
     private Map session = ActionContext.getContext().getSession();
@@ -37,11 +38,6 @@ public class CarritoAction extends ActionSupport{
 
     @Override
     public String execute(){
-        HttpServletRequest request = ServletActionContext.getRequest();
-        String idS = request.getParameter("idProducto");
-        id = Long.parseLong(idS);
-        System.out.println("Producto" + id);
-
         if(session.get("loggin") == null) {
             return LOGIN;
         }
@@ -56,8 +52,9 @@ public class CarritoAction extends ActionSupport{
 
             for (Producto pr: productoList) {
 
-                System.out.println(p.getDescripcion());
-                System.out.println(p.getPrecio());
+                if(pr.getIdProducto().equals(id)) {
+                    total += pr.getPrecio() * cant;
+                }
                 total += pr.getPrecio();
             }
             return SUCCESS;
@@ -96,5 +93,13 @@ public class CarritoAction extends ActionSupport{
     public void setTotal(float total) {
         this.total = total;
 
+    }
+
+    public Integer getCant() {
+        return cant;
+    }
+
+    public void setCant(Integer cant) {
+        this.cant = cant;
     }
 }

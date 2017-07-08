@@ -29,15 +29,15 @@ public class Producto implements Serializable{
 	@Column
 	private String descripcion;
 
-	@ManyToOne(fetch = FetchType.EAGER)@Cascade(value = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
 
-	@ManyToOne(fetch = FetchType.EAGER)@Cascade(value = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idColor")
 	private Color color;
 
-	@ManyToOne(fetch = FetchType.EAGER)@Cascade(value = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idTalle")
 	private Talle talle;
 

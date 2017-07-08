@@ -9,11 +9,13 @@ import java.util.List;
  */
 public interface ProductoDao {
     void addProducto(Producto p);
-    void editProducto(Integer id,Producto pAnt);
+    void  deleteProducto(Producto p);
+    void editProducto(Long id,Producto pAnt);
     List<Categoria> getCategorias();
     List<Talle>getTalle();
     List<Color>getColor();
     List<Producto>getProductos();
+    List<Producto>getAllProductos();
     List<Producto>getProductosM();
     List<Producto>getProductosH();
     Color color(Integer id);

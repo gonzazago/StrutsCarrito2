@@ -21,6 +21,9 @@
 
 </head>
 <body>
+<s:set name="logeado" value="#session.loggin"/>
+<s:set name="tipo" value="#session.tipo"/>
+
 <s:if test="#session.loggin == 'true'">
     <jsp:include page="headerUser.jsp"/>
 </s:if>
@@ -28,14 +31,17 @@
     <jsp:include page="header.jsp"/>
 </s:if>
  <div class="row class s10">
-	<s:form  action="VerificarProducto"  cssClass="col s10" method="POST" id="Producto" enctype="multipart/form-data">
+	<s:form  action="EditarProducto"  cssClass="col s10" method="POST" id="Producto" enctype="multipart/form-data">
+	    <div class="input-field col s10">
+            <s:hidden name="idProducto" value="%{p.idProducto}"/>
+        </div>
 	    <div class="input-field col s10">
 	        <s:label for="nombreProducto" cssClass="active" value="Nombre Producto"/>
-	        <s:textfield name="nombreProducto" cssClass="validate" placeholder="Nombre Producto"/>
+	        <s:textfield name="nombreProducto" cssClass="validate" value="%{p.nombreProducto}" placeholder="Nombre Producto"/>
 	    </div>
 	    <div class="input-field col s10">
 	    <s:label for="nombreProducto" cssClass="active" value="Descripcion de Producto"/>
-		    <s:textarea label="Comments" name="descripcion" cssClass="materialize-textarea" cols="30" rows="8"/>
+		    <s:textarea label="Comments" name="descripcion" value="%{p.descripcion}" cssClass="materialize-textarea" cols="30" rows="8"/>
 		</div>
 		<div class="input-field col s10">
 		    <s:label for="nombreProducto" cssClass="active" value="Categoria Producto"/>
@@ -51,11 +57,11 @@
         </div>
 		<div class="input-field col s10">
 		    <s:label for="nombreProducto" cssClass="active" value="Genero MAS/FEM"/>
-            <s:textfield name="genero" cssClass="validate" placeholder="Genero MAS/FEM"/>
+            <s:textfield name="genero" value="%{p.genero]" cssClass="validate" placeholder="Genero MAS/FEM"/>
         </div>
         <div class="input-field col s10">
         <s:label for="nombreProducto" cssClass="active" value="Precio"/>
-            <s:textfield name="precio" cssClass="validate" placeholder="Precio"/>
+            <s:textfield name="precio" value="%{p.precio}" cssClass="validate" placeholder="Precio"/>
         </div>
         <div class="input-field col s10">
             <s:label for="nombreProducto" cssClass="active" value="Imagen Producto"/>
@@ -63,14 +69,14 @@
         </div>
 	    <div class="input-field col s10">
 	        <s:label for="nombreProducto" cssClass="active" value="Novedad S/N"/>
-	        <s:textfield name="novedad" cssClass="validate" placeholder="Novedad"/>
+	        <s:textfield name="novedad" cssClass="validate" value ="%{p.novedad}" placeholder="Novedad"/>
         </div>
 	    <div class="input-field col s10">
 	        <s:label for="nombreProducto" cssClass="active" value="Stock disponible"/>
-		    <s:textfield name="stock" cssClass="validate" placeholder="Stock"/>
+		    <s:textfield name="stock"  value="%{p.stock}" cssClass="validate" placeholder="Stock"/>
         </div>
 		<div class="input-field col s10">
-		    <s:submit cssClass="btn waves-effect waves-light" value="Guardar"/>
+		    <s:submit cssClass="btn waves-effect waves-light" value="Guardar Cambios"/>
         </div>
 	 </s:form>
  </div>

@@ -27,7 +27,16 @@
         <s:actionerror/>
     </div>
 </s:if>
-<jsp:include page="header.jsp"/>
+<s:set name="logeado" value="#session.loggin"/>
+<s:set name="tipo" value="#session.tipo"/>
+
+<s:if test="#session.loggin == 'true'">
+    <jsp:include page="headerUser.jsp"/>
+</s:if>
+<s:if test="#session.loggin != 'true'">
+    <jsp:include page="header.jsp"/>
+</s:if>
+
 <div id="contact-page" class="container">
     	<div class="bg">
 	    	<div class="row">

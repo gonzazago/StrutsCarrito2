@@ -19,8 +19,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
 <body>
-<jsp:include page="header.jsp"/>
+<s:set name="logeado" value="%{#session.loggin}"/>
+<s:set name="tipo" value="#session.tipo"/>
 
+<s:if test="#session.loggin == 'true'">
+    <jsp:include page="headerUser.jsp"/>
+</s:if>
+<s:if test="#session.loggin != 'true'">
+    <jsp:include page="header.jsp"/>
+</s:if>
 
 <div class="parallax-container">
     <div class="parallax"><img src="images/home/slider3.jpg"></div>
@@ -39,15 +46,18 @@
                                     </span>
                                 </div>
                                 <div class="card-content">
-                                    <p><s:property value = "%{descripcion}"/></p>
+                                    <p>Descripcion : <s:property value = "%{descripcion}"/></p>
+                                    <p>Precio : <s:property value = "%{precio}"/></p>
                                 </div>
                                 <div class="card-action">
-                                    <s:url action="CarritoAction" var="urlTag" >
-                                        <s:param name="idProducto">
-                                           <s:property value = "%{idProducto}"/>
-                                        </s:param>
-                                     </s:url>
-                                    <a href="<s:property value="#urlTag" />" >Agregar a Carrito</a>
+                                     <form action="CarritoAction" method="GET" id="Registro">
+                                        <s:hidden name = "id" value="%{idProducto}"/>
+                                        <label for ="cant">Cantidad</label>
+                                        <input type="number" name ="cant" min = "0" class="validate"/>
+                                        <button class="btn waves-effect waves-light" type="submit">Agregar a Carrito
+                                            <i class="material-icons">add_shopping_cart</i>
+                                        </button>
+                                     </form>
                                 </div>
                             </div>
                         </div>

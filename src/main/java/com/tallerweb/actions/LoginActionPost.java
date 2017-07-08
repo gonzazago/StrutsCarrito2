@@ -26,7 +26,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 public class LoginActionPost extends ActionSupport{
     private String nombre;
     private String password;
-    Map session = ActionContext.getContext().getSession();
+    private Map session = ActionContext.getContext().getSession();
     private UsuarioServicios uMng = new UsuarioServiciosImple();
 
     @Override
@@ -40,6 +40,7 @@ public class LoginActionPost extends ActionSupport{
             Usuario us = uMng.traerUsuario(u);
             session.put("user",us.getNombreYapellido());
             session.put("idUsuario",us.getIdUsuario());
+            session.put("tipo",us.getTipo());
             return SUCCESS;
         }
 
